@@ -1,0 +1,30 @@
+{
+  "name": "aws-lambda-rust-runtime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate-dockerfile": "node ./scripts/generateDockerfile.js",
+    "list-rust-versions": "node ./scripts/getAllRustReleases.js",
+    "create-release-images": "npm run list-rust-versions --silent | xargs -L1 ./scripts/createRelease.sh",
+    "build": "docker build ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jammymalina/aws-lambda-rust-runtime.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jammymalina/aws-lambda-rust-runtime/issues"
+  },
+  "homepage": "https://github.com/jammymalina/aws-lambda-rust-runtime#readme",
+  "dependencies": {
+    "@octokit/core": "^3.1.1",
+    "ejs": "^3.1.3"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
+  }
+}
