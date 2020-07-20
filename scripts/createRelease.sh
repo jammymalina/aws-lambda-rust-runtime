@@ -2,11 +2,10 @@
 
 RUST_VERSION=$1
 
+REPO=jammymalina/aws-lambda-rust-runtime
+TAG="$REPO:version-$RUST_VERSION"
+
 echo "Generating release: $RUST_VERSION"
 
-npm run generate-dockerfile -- $RUST_VERSION
-git add Dockerfile
-git commit -m "Generating docker file with version: $RUST_VERSION"
-git tag -a v$RUST_VERSION -m "release $RUST_VERSION"
-git push origin
-git push origin --tags
+npm run build --rust=$RUST_VERSION --tag=$TAG
+docker image push $TAG
